@@ -2,8 +2,9 @@ import axios from "axios";
 
 // export const     API_URL = `https://project-test-production.up.railway.app`;
 
-export const API_URL = `http://localhost:1024`;
+// export const API_URL = `http://localhost:1024`;
 
+export const API_URL = `https://stakingusdt-bek.onrender.com`;
 const $host = axios.create({
     baseURL: API_URL
 });
