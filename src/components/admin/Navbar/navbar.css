@@ -1,0 +1,34 @@
+@import './../../../assets/font/stylesheet.css';
+.header_nav {
+    
+    font-family: "Stolzl Reg";
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .nav_bar {
+    display: flex;
+    width: 1280px;
+    column-gap: 30px;
+    align-items: center;
+    justify-content: left;
+  }
+  .nav_cont {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    border-bottom: 1px solid #808080;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: black;
+    height: 34px;
+    align-items: center;
+  }
+  .nav_bar a {
+    text-decoration: none !important;
+    flex: 1;
+    display: flex;
+    max-width: 274px;
+  }

@@ -1,0 +1,40 @@
+@import './../../assets/font/stylesheet.css';
+.footer{
+    margin-top: 116px;
+    font-family: 'Stolzl';
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+} 
+
+.footer>.container{
+    width: 100%;
+    max-width: 1280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.footer>.container ul{
+    width: 100%;
+    /* align-items: center; */
+    justify-content: space-between;
+    display: flex;
+    list-style-type: none;
+    column-gap: 30px;
+    align-items: center;
+    padding: 0
+}
+
+.footer>.container ul li{
+    font-size: 10pt;
+}
+
+@media (max-width:1200px) {
+    .footer>.container{ 
+        max-width: 1040px;
+        width: 100%;
+    }
+}

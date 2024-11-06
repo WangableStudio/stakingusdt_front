@@ -1,0 +1,31 @@
+.refferals_box {
+    display: "flex";
+    justify-content: "space-between";
+    border-bottom-width: "1px";
+    border-top-width: "1px";
+    border-color: "#000000";
+    border-top-style: "solid";
+    border-bottom-style: "solid";
+
+    padding-top: "10px";
+    padding-bottom: "10px";
+}
+
+@media(max-width:450px) {
+    .refferals_box {
+        display: "flex";
+        justify-content: "space-between";
+        border-bottom-width: "1px";
+        border-top-width: "1px";
+        border-color: "#000000";
+        border-top-style: "solid";
+        border-bottom-style: "solid";
+        flex-direction: column;
+        padding-top: "10px";
+        flex-direction: column;
+        padding-bottom: "10px";
+    }
+    .refferals-table{
+        overflow-x: scroll;
+    }
+}

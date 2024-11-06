@@ -1,0 +1,8 @@
+@media(max-width:767px) {
+    .profile_box-column{
+        flex-direction: column;
+    }
+    .profile_box-column__mini{
+        width: 100% !important;
+    }
+}

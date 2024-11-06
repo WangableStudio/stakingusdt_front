@@ -1,0 +1,695 @@
+@import './../../assets/font/stylesheet.css';
+.promo{
+    
+    padding: 60px 0 57px 108px;
+    width: 1172px;
+    display: inline-block;
+    
+    align-items: center;
+
+    background-color: #F4F9FE;
+    border-radius: 15px;
+
+    padding-bottom: 40px; 
+
+    justify-content: center;
+}
+
+
+.main_promo{
+    display: flex;
+}
+/*большая подпись для блока*/
+
+    
+
+.titlePromo{
+    
+    font-size: 50pt;
+    
+    width: 100%;
+    margin: 0 0 45px 0;
+    
+    align-items:center;
+    justify-content: center;
+    
+}
+
+
+
+/*синее слово в заголовке блока*/
+.blue_titlePromo{
+    
+    
+    color: #2C84EC;
+}
+
+/*черная большая надпись в заголовке блока*/
+.black_titlePromo{
+    
+    color: #000;
+}
+
+/*блок информации и таблицы*/
+.infoPromo{
+    width: 1280px;
+    
+    display: flex;
+    
+    justify-content: space-between;
+
+    
+}
+
+/*блок информации*/
+
+.text_info_block{
+    width: 245px;
+}
+/*информации о времени*/
+.timePromo{
+    width: 245px;
+    font-size: 14pt;
+    margin-top: 4px;
+    margin-bottom:4px ;
+}
+
+/*информация о курсе*/
+.coursePromo{
+    width: 245px;
+    text-wrap: nowrap;
+    margin-top: 4px;
+    margin-bottom:4px ;
+    font-size: 40pt;
+}
+
+/*информация о прибыли*/
+.profitPromo{
+    color: #2C84EC;
+    width: 245px;
+    font-size: 13pt;
+    margin-top: 4px;
+    margin-bottom:4px ;
+}
+
+/*кнопка зарегистрироваться*/
+.loginButton{
+    width: 245px;
+    height: 45px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+
+    
+    border-radius: 80px;
+    
+    background-color: #2C84EC;
+
+    
+    
+    
+   
+}
+
+/*надпись в кнопке*/
+.loginButton p{
+    
+    justify-content: center;
+    align-items: center;
+    
+    padding: 12px 50px 12px 50px;
+    height: 16px;
+    width: 145px;
+    color:#fff;
+    font-size: 10pt;
+    
+    
+  
+}
+
+/*контейнер с таблицей*/
+.container_table{
+    
+    width: 800px;
+
+    border-radius: 15px 0 0 15px;
+    
+    background-color: #fff;
+    margin: 0 0 0 170px ;
+    justify-content: right;
+   
+    padding-bottom: 40px;
+    padding-top: 35px;
+    padding-left: 30px;
+}
+
+/*заголовок таблицы*/
+.title-table{
+    margin: 0 auto;
+    
+    font-size: 16pt;
+}
+
+.leaderStats{
+    width: 708px;
+    margin: 0 auto;
+    height: auto;
+}
+
+/*содержание таблицы*/
+.table{
+    width: 730px;
+    font-size: 9pt;
+    margin-top: 20px;
+}
+
+/*первая строка таблицы*/
+.blue-row-table{  
+    width: 648px;
+    color:#2C84EC;
+    
+}
+
+.td_blue{
+    color:#2C84EC;
+}
+
+
+.blue_word{
+    color:#2C84EC;
+}
+.description_block{
+    
+    justify-content: space-between;
+    width: 1064px;
+    margin: 0 180px 0 180px;
+}
+
+.description_bottom1{
+    font-size: 15pt;
+    width: 1024px;
+    
+    padding: 70px 20px 40px 20px;
+}
+.description_bottom2{
+    
+    font-size: 12pt;
+    width: 1024px;
+    padding: 0 20px 0 10px;
+    
+}
+.blackDescr{
+    font-size: 13pt;
+    color:#000;
+    width: 1024px;
+    
+}
+
+.description_bottom3 p{
+    color: #000;
+    font-size: 10pt;
+    width: 1024px;
+    padding-bottom: 20px;
+    
+}
+
+.description_bottom4{
+    color: #000;
+    font-size: 10pt;
+    width: 1024px;
+    padding-bottom: 20px;
+   
+    
+}
+
+.description_bottom4 p{
+    color: #000;
+    font-size: 10pt;
+    width: 1024px;
+   
+    
+}
+
+
+
+
+
+
+
+
+
+@media(max-width:1440px){
+/*блок с таблицей и информацией*/
+.promo{
+    
+    padding: 60px 0 57px 108px;
+    width: 1172px;
+    display: inline-block;
+    
+    align-items: center;
+
+    background-color: #F4F9FE;
+    border-radius: 15px;
+
+    padding-bottom: 40px; 
+
+    justify-content: center;
+}
+
+/*большая подпись для блока*/
+
+    
+
+.titlePromo{
+    
+    font-size: 50pt;
+    
+    width: 100%;
+    margin: 0 0 45px 0;
+    
+    align-items:center;
+    justify-content: center;
+    
+}
+
+
+
+/*синее слово в заголовке блока*/
+.blue_titlePromo{
+    
+    
+    color: #2C84EC;
+}
+
+/*черная большая надпись в заголовке блока*/
+.black_titlePromo{
+    
+    color: #000;
+}
+
+/*блок информации и таблицы*/
+.infoPromo{
+    width: 1280px;
+    
+    display: flex;
+    
+    justify-content: space-between;
+
+    
+}
+
+/*блок информации*/
+
+.text_info_block{
+    width: 245px;
+}
+/*информации о времени*/
+.timePromo{
+    width: 245px;
+    font-size: 14pt;
+    margin-top: 4px;
+    margin-bottom:4px ;
+}
+
+/*информация о курсе*/
+.coursePromo{
+    width: 245px;
+    text-wrap: nowrap;
+    margin-top: 4px;
+    margin-bottom:4px ;
+    font-size: 40pt;
+}
+
+/*информация о прибыли*/
+.profitPromo{
+    color: #2C84EC;
+    width: 245px;
+    font-size: 13pt;
+    margin-top: 4px;
+    margin-bottom:4px ;
+}
+
+/*кнопка зарегистрироваться*/
+.loginButton{
+    width: 245px;
+    height: 45px;
+    
+    align-items: center;
+    justify-content: center;
+
+    
+    border-radius: 80px;
+    
+    background-color: #2C84EC;
+
+    
+    
+    
+   
+}
+
+/*надпись в кнопке*/
+.loginButton p{
+    
+    justify-content: center;
+    align-items: center;
+    
+    padding: 12px 50px 12px 50px;
+    height: 16px;
+    width: 145px;
+    color:#fff;
+    font-size: 10pt;
+    
+    
+  
+}
+
+/*контейнер с таблицей*/
+.container_table{
+    
+    width: 800px;
+
+    border-radius: 15px 0 0 15px;
+    
+    background-color: #fff;
+    margin: 0 0 0 170px ;
+    justify-content: right;
+   
+    padding-bottom: 40px;
+    padding-top: 35px;
+    padding-left: 30px;
+}
+
+/*заголовок таблицы*/
+.title-table{
+    margin: 0 auto;
+    
+    font-size: 16pt;
+}
+
+.leaderStats{
+    width: 708px;
+    margin: 0 auto;
+    height: auto;
+}
+
+/*содержание таблицы*/
+.table{
+    width: 730px;
+    font-size: 9pt;
+    margin-top: 20px;
+}
+
+/*первая строка таблицы*/
+.blue-row-table{  
+    width: 648px;
+    color:#2C84EC;
+    
+}
+
+.td_blue{
+    color:#2C84EC;
+}
+
+
+.blue_word{
+    color:#2C84EC;
+}
+.description_block{
+    
+    justify-content: space-between;
+    width: 1064px;
+    margin: 0 180px 0 180px;
+}
+
+.description_bottom1{
+    font-size: 15pt;
+    width: 1024px;
+    
+    padding: 70px 20px 40px 20px;
+}
+.description_bottom2{
+    
+    font-size: 12pt;
+    width: 1024px;
+    padding: 0 20px 0 10px;
+    
+}
+.blackDescr{
+    font-size: 13pt;
+    color:#000;
+    width: 1024px;
+    
+}
+
+.description_bottom3 p{
+    color: #000;
+    font-size: 10pt;
+    width: 1024px;
+    padding-bottom: 20px;
+    
+}
+
+}
+
+@media(max-width:450px){
+
+    .description_bottom4 p{
+        color: #000;
+        font-size: 10pt;
+        width: 330px;
+       
+        
+    }
+
+    .description_bottom4 {
+        color: #000;
+        font-size: 10pt;
+        width: 330px;
+       
+        
+    }
+    .promo{
+        padding: 0;
+        width: 100%;
+        height: 550px;  
+        display: flex;
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header_row{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .main_promo{
+        display: flex;
+        flex-direction: column;
+    }
+    .titlePromo {
+        font-size: 20.5pt;
+        width: 330px;
+        /* height: 137px; */
+        text-align: center;
+        display: flex;
+        /* margin-top: 50px;*/   
+    }
+
+    .black_titlePromo{
+        padding: 10px 10px 10px 10px;
+    }
+
+    .infoPromo{
+        width: 330px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .timePromo{
+        display: flex;
+        justify-content: center;
+    }
+
+    .coursePromo{
+        display: flex;
+        justify-content: center;
+    }
+
+    .profitPromo{
+        display: flex;
+        justify-content: center;
+    }
+
+    .container_promo{
+        width: 330px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    td{
+        height: 4px;
+    }
+
+    .text_info_block{
+        margin-bottom: 20px;
+        width: 330px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .liderStats{
+        width: 100%;
+        overflow-y: hidden;
+        overflow-x: scroll;   
+    }
+    
+    .container_table {
+        width: 360px;
+        height: 180px; 
+        border-radius: 15px 0 0 15px;
+        background-color: #fff;
+        justify-content: left;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        margin: 0 0 0 20px;
+        padding-left: 0px;
+        display: flex;
+        
+        
+    }
+
+    .table {
+        width: 340px;
+        height: 0px;
+        font-size: 7pt;
+        margin-top: 0px;
+        margin-left: 20px;
+    }
+
+    .blue-row-table{
+        width: 100px;
+        height: 20px;
+    }
+
+    .black-row-table{
+        height: 20px;
+    }
+
+    .title-table{
+        font-size: 10pt;
+        padding: 20px;
+    }
+
+    .conteiner_loginButton_2{
+        width: 330px;
+        height: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .loginButton_2{
+        width: 245px;
+        height: 40px;
+        border-radius: 30px;
+        background: blue;
+        color: white;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    
+
+
+    .loginButton{
+        display: none;
+    }
+
+    .timePromo {
+        width: 330px;
+        font-size: 10pt;
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+
+    .coursePromo {
+        width: 330px;
+        text-wrap: nowrap;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        font-size: 24pt;
+    }
+    
+    .profitPromo {
+        color: #2C84EC;
+        width: 330px;
+        font-size: 10pt;
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+
+    .description_block{
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        
+        
+    }
+
+    .description_bottom1 {
+        flex-direction: column;
+        font-size: 10pt;
+        width: 330px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .description_bottom2{
+        width: 330px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .description_bottom3{
+        width: 330px;
+        text-align: center;
+        
+        margin: 0 auto;
+    }
+
+    .description_bottom3 p {
+        color: #000;
+        font-size: 9pt;
+        width: 330px;
+        padding-bottom: 20px;
+    }
+    
+    .footer>.container ul{
+        display: flex;
+        flex-direction: column;
+    }
+   
+
+   
+    
+    
+
+    
+
+    
+    
+    }

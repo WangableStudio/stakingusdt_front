@@ -1,0 +1,12 @@
+@import './../../../assets/font/stylesheet.css';
+
+.title{
+    font-family: 'Stolzl Reg';
+    padding-top: 50px;
+    font-size: 34pt;
+}
+
+.history_table{
+    width: 100%;
+    overflow-x: scroll;
+}

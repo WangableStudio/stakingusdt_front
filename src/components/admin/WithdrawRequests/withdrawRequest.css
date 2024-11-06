@@ -1,0 +1,12 @@
+.withdraw-request__button.inactive{
+    background-color: rgb(236 152 44) !important;
+}
+
+.withdraw-table{
+    width: 100%;
+    overflow-x: scroll;
+}
+tbody tr{
+
+    margin-top: 20px;
+}

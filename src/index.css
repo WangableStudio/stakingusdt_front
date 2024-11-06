@@ -1,0 +1,18 @@
+@import "./assets/font/stylesheet.css";
+
+* {
+    font-family: 'Stolzl', serif;
+    font-weight: normal;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+button {
+    border-width: 0;
+}
+
+::-webkit-scrollbar{
+    width: 0px;
+}
