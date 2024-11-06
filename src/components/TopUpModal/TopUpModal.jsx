@@ -19,7 +19,6 @@ const style = {
 };
 
 const TopUpModal = ({ onClose, open, changeStep, handleChange, formData, ratesData }) => {
-    console.log(formData);
     const handleNextStep = () => {
         // Проверка обязательных полей перед переходом на следующий шаг
         if (!formData.address || !formData.depositTerm) {

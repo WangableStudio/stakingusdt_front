@@ -17,7 +17,7 @@ const UniversalTable = ({ data, headers, columnTypes, onButtonClick, isClickable
                 <tr>
                     {headers.map((header, index) => {
                         const type = columnTypes[index];
-                        if (type == "twoLines")
+                        if (type === "twoLines")
                             return (
                                 <th key={index}>
                                     <p>{header[0]}</p>
@@ -57,19 +57,35 @@ const UniversalTable = ({ data, headers, columnTypes, onButtonClick, isClickable
                                     case "button":
                                         return (
                                             <td key={colIndex}>
-                                                <Button
-                                                    size="small"
-                                                    variant="contained"
-                                                    className={`withdraw-request__button ${status}`}
-                                                    onClick={() => onButtonClick(row.id)}
-                                                    sx={{
-                                                        bgcolor: "#2C84EC",
-                                                        borderRadius: "2px",
-                                                        fontFamily: "Stolzl",
-                                                        fontSize: "10px",
-                                                        fontWeight: 400
-                                                    }}
-                                                >Изменить</Button>
+                                                {row.canWithdraw ? (
+                                                    <Button
+                                                        size="small"
+                                                        variant="contained"
+                                                        className={`withdraw-request__button ${status}`}
+                                                        onClick={() => onButtonClick(row.ID)}
+                                                        sx={{
+                                                            bgcolor: "#2C84EC",
+                                                            borderRadius: "2px",
+                                                            fontFamily: "Stolzl",
+                                                            fontSize: "10px",
+                                                            fontWeight: 400
+                                                        }}
+                                                    >Вывести заработок</Button>
+                                                ) : (
+                                                    <Button
+                                                        size="small"
+                                                        variant="contained"
+                                                        className={`withdraw-request__button ${status}`}
+                                                        disabled
+                                                        sx={{
+                                                            bgcolor: "#D3D3D3",
+                                                            borderRadius: "2px",
+                                                            fontFamily: "Stolzl",
+                                                            fontSize: "10px",
+                                                            fontWeight: 400
+                                                        }}
+                                                    >Вывести заработок</Button>
+                                                )}
                                             </td>
                                         );
                                     default:
@@ -83,7 +99,7 @@ const UniversalTable = ({ data, headers, columnTypes, onButtonClick, isClickable
                                                     currentValue
                                                 )}
                                             </td>
-                                        );                                        
+                                        );
                                 }
                             })}
                         </tr>

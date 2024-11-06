@@ -57,7 +57,8 @@ const headers = [
     ["Дата открытия", "/ дней до окончания"],
     ["Срок вклада", "% доходности (год)"],
     ["Доходность текущая", "Ожидаемая"],
-    "Статус"
+    "Статус",
+    "Вывод средств"
 ];
 
 const columnTypes = [
@@ -67,6 +68,7 @@ const columnTypes = [
     "twoLines",
     "twoLines",
     "status",
+    "button"
 ];
 
 const calculateTotalIncomeForToday = (createdAtString, depositTerm, price, currency, status, interestRate) => {
@@ -92,17 +94,29 @@ const calculateTotalIncomeForToday = (createdAtString, depositTerm, price, curre
 };
 
 const transformStakingFormat = (staking) => {
-    return staking.map((item) => ({
-        ID: item._id,
-        price: item.price.toFixed(2) + ` ${item.currency}`,
-        date: [moment(item.createdAt).format("YYYY-MM-DD HH:mm"), calculateDiffBetweenData(item.createdAt, item.depositTerm)],
-        percent: [`${item.depositTerm || 0}`, `${item.interestRate}%`], // Используем процент из данных депозита
-        income: [
-            calculateTotalIncomeForToday(item.createdAt, item.depositTerm, item.price, item.currency, item.status, item.interestRate).toFixed(2) + ` ${item.currency}`,
-            (item.price * (item.depositTerm || 0) * getPercent(item.depositTerm, item.interestRate)).toFixed(2) + ` ${item.currency}`,
-        ],
-        status: item.status === "PROCESS" ? "Обработка" : "Зачислено",
-    }));
+    return staking.map((item) => {
+        const endDate = new Date(item.createdAt);
+        endDate.setFullYear(endDate.getFullYear() + item.depositTerm);
+        const today = new Date();
+
+        const canWithdraw = today >= endDate;
+
+        return {
+            ID: item._id,
+            price: item.price.toFixed(2) + ` ${item.currency}`,
+            date: [
+                moment(item.createdAt).format("YYYY-MM-DD HH:mm"),
+                calculateDiffBetweenData(item.createdAt, item.depositTerm)
+            ],
+            percent: [`${item.depositTerm || 0}`, `${item.interestRate}%`],
+            income: [
+                calculateTotalIncomeForToday(item.createdAt, item.depositTerm, item.price, item.currency, item.status, item.interestRate).toFixed(2) + ` ${item.currency}`,
+                (item.price * (item.depositTerm || 0) * getPercent(item.depositTerm, item.interestRate)).toFixed(2) + ` ${item.currency}`,
+            ],
+            status: item.status === "PROCESS" ? "Обработка" : "Зачислено",
+            canWithdraw // Новый флаг для проверки возможности вывода
+        };
+    });
 };
 
 
