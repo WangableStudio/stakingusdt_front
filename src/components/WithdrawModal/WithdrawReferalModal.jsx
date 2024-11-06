@@ -65,7 +65,7 @@ const WithdrawReferalModal = ({ onClose, open, changeStep, handleChange, formDat
                                 width: "50%"
                             }}
                         >
-                            На какое время хотите оформить
+                            Срок вклада
                         </Typography>
                         <CustomSelect handleChange={handleChange} formData={formData} ratesData={ratesData} />
                     </Box>

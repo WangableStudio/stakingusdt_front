@@ -10,7 +10,7 @@ function getValueByIndex(obj, index) {
     return obj[key];
 }
 
-const UniversalTable = ({ data, headers, columnTypes, onButtonClick, isClickableIndexes }) => {
+const UniversalTable = ({ data, headers, columnTypes, onButtonClick, isClickableIndexes, setStepOfWithdrawReferal }) => {
     return (
         <table width="100%">
             <thead>
@@ -55,6 +55,7 @@ const UniversalTable = ({ data, headers, columnTypes, onButtonClick, isClickable
                                             </td>
                                         );
                                     case "button":
+                                        console.log(row);
                                         return (
                                             <td key={colIndex}>
                                                 {row.canWithdraw ? (
@@ -62,9 +63,10 @@ const UniversalTable = ({ data, headers, columnTypes, onButtonClick, isClickable
                                                         size="small"
                                                         variant="contained"
                                                         className={`withdraw-request__button ${status}`}
-                                                        onClick={() => onButtonClick(row.ID)}
+                                                        onClick={setStepOfWithdrawReferal}
+                                                        disabled
                                                         sx={{
-                                                            bgcolor: "#2C84EC",
+                                                            bgcolor: "#D3D3D3",
                                                             borderRadius: "2px",
                                                             fontFamily: "Stolzl",
                                                             fontSize: "10px",
@@ -76,15 +78,15 @@ const UniversalTable = ({ data, headers, columnTypes, onButtonClick, isClickable
                                                         size="small"
                                                         variant="contained"
                                                         className={`withdraw-request__button ${status}`}
-                                                        disabled
+                                                        onClick={() => onButtonClick(row.id)}
                                                         sx={{
-                                                            bgcolor: "#D3D3D3",
+                                                            bgcolor: "#2C84EC",
                                                             borderRadius: "2px",
                                                             fontFamily: "Stolzl",
                                                             fontSize: "10px",
                                                             fontWeight: 400
                                                         }}
-                                                    >Вывести заработок</Button>
+                                                    >Изменить</Button>
                                                 )}
                                             </td>
                                         );

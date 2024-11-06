@@ -383,6 +383,7 @@ const PartnerStatus = () => {
                         data={transformStakingFormat(stakingData)}
                         headers={headers}
                         columnTypes={columnTypes}
+                        setStepOfWithdrawReferal={() => setStepOfWithdrawReferal(1)}
                         isClickableIndexes={[]}
                     />
                 </div>
