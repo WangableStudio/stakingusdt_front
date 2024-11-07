@@ -13,6 +13,7 @@ import UniversalTable from "../../UI/table";
 import $host from "../../../http";
 import "./style.css";
 import WithdrawReferalModal from "../../WithdrawModal/WithdrawReferalModal";
+import WithdrawPeriodModal from "../../WithdrawModal/WithdrawPeriodModal";
 
 const output_but = "Вывести";
 const input_but = "Пополнить";
@@ -68,7 +69,7 @@ const columnTypes = [
     "twoLines",
     "twoLines",
     "status",
-    "button"
+    "buttonwithdraw"
 ];
 
 const calculateTotalIncomeForToday = (createdAtString, depositTerm, price, currency, status, interestRate) => {
@@ -164,6 +165,7 @@ const PartnerStatus = () => {
     const [stepOfModals, setStepsOfModals] = useState(0);
     const [stepOfWithdraw, setStepOfWithdraw] = useState(0);
     const [stepOfWithdrawReferal, setStepOfWithdrawReferal] = useState(0);
+    const [stepOfWithdrawPeriod, setStepOfWithdrawPeriod] = useState(0);
     const [loading, setLoading] = useState(true);
     const user = useSelector((state) => state.user?.currentUser?.user);
     const [formData, setFormData] = useState({
@@ -172,7 +174,8 @@ const PartnerStatus = () => {
         address: "",
         operation: "WITHDRAW",
         currency: "USDT",
-        image: null
+        image: null,
+        status: "PROCESS"
     });
 
     const handleChange = (e) => {
@@ -182,6 +185,7 @@ const PartnerStatus = () => {
             const file = files && files.length > 0 ? files[0] : null;
             setFormData((prev) => ({ ...prev, [name]: file })); // сохраняем объект File
         } else {
+            
             setFormData((prev) => ({ ...prev, [name]: value }));
         }
     };
@@ -210,6 +214,7 @@ const PartnerStatus = () => {
             formDataToSend.append("refbalance", refbalance);
             formDataToSend.append("currency", formData.currency);
             formDataToSend.append("image", formData.image); // Передаем файл
+            formDataToSend.append("status", formData.status); // Передаем файл
             console.log(formDataToSend);
 
             // Добавляем операцию (можно добавлять как обычное поле)
@@ -217,8 +222,10 @@ const PartnerStatus = () => {
             console.log(formDataToSend);
             console.log(formData);
 
+            const method = formData.status == "WITHDRAW" ? `/api/deposit/period-withdraw` : `/api/deposit`
+
             // // Отправляем данные
-            const response = await $host.post(`/api/deposit`, formDataToSend, {
+            const response = await $host.post(method, formDataToSend, {
                 headers: {
                     'Content-Type': 'multipart/form-data', // Устанавливаем заголовок
                 },
@@ -243,14 +250,37 @@ const PartnerStatus = () => {
         }
     }
 
+    const handleWithdraw = (balance, earnings, depositTerm) => {
+        console.log(balance, earnings);
+        console.log(depositTerm);
+        const num = Number(depositTerm)
+        // Удаляем 'USDT' и преобразуем значения в числа
+        const validBalance = parseFloat(balance.replace(" USDT", "")) || 0;
+        const validEarnings = parseFloat(earnings.replace(" USDT", "")) || 0;
+        const updatedPrice = validBalance + validEarnings;
+    
+        console.log(formData);
+        // Обновляем formData и статус
+        setFormData((prevData) => ({
+            ...prevData,
+            price: updatedPrice,
+            status: "WITHDRAW",
+            depositTerm: num
+        }));
+        console.log(formData);
+    
+        // Устанавливаем шаг вывода средств
+        setStepOfWithdrawPeriod(1);
+    };    
+
 
     useEffect(() => {
         fetchInterestRates();
         fetchStakingData();
     }, []);
 
-    const onChangeStepWithdraw = async (type = "WITHDRAW") => {
-        await handleSubmit(type, true);
+    const onChangeStepWithdraw = async (type = "WITHDRAW", refbalance = true) => {
+        await handleSubmit(type, refbalance);
     }
 
     if (loading) {
@@ -295,6 +325,14 @@ const PartnerStatus = () => {
                 open={stepOfWithdrawReferal === 1}
                 onClose={() => setStepOfWithdrawReferal(0)}
                 changeStep={() => { onChangeStepWithdraw(formData.operation) }}
+                handleChange={handleChange}
+                ratesData={ratesData}
+                formData={formData}
+            />
+            <WithdrawPeriodModal
+                open={stepOfWithdrawPeriod === 1}
+                onClose={() => setStepOfWithdrawPeriod(0)}
+                changeStep={() => { onChangeStepWithdraw(formData.operation, false) }}
                 handleChange={handleChange}
                 ratesData={ratesData}
                 formData={formData}
@@ -383,7 +421,7 @@ const PartnerStatus = () => {
                         data={transformStakingFormat(stakingData)}
                         headers={headers}
                         columnTypes={columnTypes}
-                        setStepOfWithdrawReferal={() => setStepOfWithdrawReferal(1)}
+                        handleWithdraw={handleWithdraw}
                         isClickableIndexes={[]}
                     />
                 </div>

@@ -10,7 +10,7 @@ function getValueByIndex(obj, index) {
     return obj[key];
 }
 
-const UniversalTable = ({ data, headers, columnTypes, onButtonClick, isClickableIndexes, setStepOfWithdrawReferal }) => {
+const UniversalTable = ({ data, headers, columnTypes, onButtonClick, isClickableIndexes, handleWithdraw }) => {
     return (
         <table width="100%">
             <thead>
@@ -35,7 +35,7 @@ const UniversalTable = ({ data, headers, columnTypes, onButtonClick, isClickable
                             {headers.map((_, colIndex) => {
                                 const currentValue = getValueByIndex(row, colIndex);
                                 const type = columnTypes[colIndex];
-                                const status = currentValue === "Обработка" ? "inactive" : "active";
+                                const status = currentValue === "Обработка" ? "inactive" : currentValue == "Зачислино" ? "inactive" : "active";
 
                                 switch (type) {
                                     case "twoLines":
@@ -55,7 +55,25 @@ const UniversalTable = ({ data, headers, columnTypes, onButtonClick, isClickable
                                             </td>
                                         );
                                     case "button":
-                                        console.log(row);
+                                        return (
+                                            <td key={colIndex}>
+                                                <Button
+                                                    size="small"
+                                                    variant="contained"
+                                                    className={`withdraw-request__button ${status}`}
+                                                    onClick={() => onButtonClick(row.id)}
+                                                    sx={{
+                                                        bgcolor: "#2C84EC",
+                                                        borderRadius: "2px",
+                                                        fontFamily: "Stolzl",
+                                                        fontSize: "10px",
+                                                        fontWeight: 400
+                                                    }}
+                                                >Изменить</Button>
+
+                                            </td>
+                                        );
+                                    case "buttonwithdraw":
                                         return (
                                             <td key={colIndex}>
                                                 {row.canWithdraw ? (
@@ -63,30 +81,30 @@ const UniversalTable = ({ data, headers, columnTypes, onButtonClick, isClickable
                                                         size="small"
                                                         variant="contained"
                                                         className={`withdraw-request__button ${status}`}
-                                                        onClick={setStepOfWithdrawReferal}
-                                                        disabled
+                                                        onClick={() => handleWithdraw(row.price, row.income[0], row.percent[0])}
                                                         sx={{
-                                                            bgcolor: "#D3D3D3",
+                                                            bgcolor: "#2c84ec",
                                                             borderRadius: "2px",
                                                             fontFamily: "Stolzl",
                                                             fontSize: "10px",
                                                             fontWeight: 400
                                                         }}
                                                     >Вывести заработок</Button>
-                                                ) : (
-                                                    <Button
-                                                        size="small"
-                                                        variant="contained"
-                                                        className={`withdraw-request__button ${status}`}
-                                                        onClick={() => onButtonClick(row.id)}
-                                                        sx={{
-                                                            bgcolor: "#2C84EC",
-                                                            borderRadius: "2px",
-                                                            fontFamily: "Stolzl",
-                                                            fontSize: "10px",
-                                                            fontWeight: 400
-                                                        }}
-                                                    >Изменить</Button>
+                                                    ) : (
+                                                        <Button
+                                                            size="small"
+                                                            variant="contained"
+                                                            className={`withdraw-request__button ${status}`}
+
+                                                            disabled
+                                                            sx={{
+                                                                bgcolor: "#D3D3D3",
+                                                                borderRadius: "2px",
+                                                                fontFamily: "Stolzl",
+                                                                fontSize: "10px",
+                                                                fontWeight: 400
+                                                            }}
+                                                        >Вывести заработок</Button>    
                                                 )}
                                             </td>
                                         );

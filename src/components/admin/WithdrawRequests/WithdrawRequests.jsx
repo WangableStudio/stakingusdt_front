@@ -17,14 +17,14 @@ import "./withdrawRequest.css";
 
 function transformUsersFormat(users) {
   return users.map((item) => ({
-    userId: item.user,
+    userId: item.user._id,
     id: item._id,
     createdAt: item.createdAt,
     updatedAt: item.updatedAt,
     price: item.price + ` ${item.currency}`,
     address: item.address || "",
     typeOfOperation: item.operation === "DEPOSIT" ? "Ввод" : "Вывод",
-    status: item.status === "PROCESS" ? "Обработка" : "Зачислено",
+    status: item.status === "PROCESS" ? "Обработка" : item.status === "WITHDRAW" ? "Обработка" : "Зачислено",
     image: item.image 
   }));
 }
@@ -122,17 +122,20 @@ const WithdrawRequests = () => {
 
   const handleChangeStatus = async () => {
     const withdraw = selectedItem;
+    const withdrawStatus = withdraw.status === "WITHDRAW"
     if (!withdraw) {
       return toast.error("Не существующий данный");
     }
     const toastId = toast.loading("Loading...");
     const isWithdraw = withdraw.operation === "WITHDRAW";
+    const requestData = {
+      price: price, // Всегда отправляем цену
+      ...(withdrawStatus && { periodbalance: true }) // Если статус "WITHDRAW", добавляем periodbalance: true
+  };
     try {
       const { data } = await $http.post(
         `/api/deposit/change-status/${withdraw._id}`,
-        {
-          price: price,
-        }
+        requestData
       );
       await fetchData();
       toast.success(
