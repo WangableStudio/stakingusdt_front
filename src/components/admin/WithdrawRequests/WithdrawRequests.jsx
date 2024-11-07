@@ -25,7 +25,7 @@ function transformUsersFormat(users) {
     address: item.address || "",
     typeOfOperation: item.operation === "DEPOSIT" ? "Ввод" : "Вывод",
     status: item.status === "PROCESS" ? "Обработка" : item.status === "WITHDRAW" ? "Обработка" : "Зачислено",
-    image: item.image 
+    image: item.image
   }));
 }
 
@@ -66,17 +66,34 @@ const WithdrawRequests = () => {
 
   const fetchData = async () => {
     try {
+      // Пытаемся сделать запрос
       const { data: depositData } = await $http.get(`/api/deposit/`);
-      
+
+      // Если запрос успешен, обновляем состояния
       setData(depositData);
       setFilteredData(depositData);
-      console.log(depositData);
+      console.log("Data fetched successfully:", depositData); // Логируем успешный ответ
     } catch (error) {
-      console.error(error);
+      // Обработка ошибки
+      if (error.response) {
+        // Ошибка от сервера (например, 404, 500)
+        console.error("Error response:", error.response);
+        toast.error(`Server error: ${error.response.data.message || "Unknown error"}`);
+      } else if (error.request) {
+        // Ошибка запроса (например, сервер не ответил)
+        console.error("Error request:", error.request);
+        toast.error("No response from the server.");
+      } else {
+        // Другие ошибки, например, ошибки в коде
+        console.error("Error message:", error.message);
+        toast.error(`Error: ${error.message}`);
+      }
     } finally {
+      // Завершаем загрузку независимо от успеха или ошибки
       setLoading(false);
     }
   };
+
 
   // Обработчик поиска
   const handleSearch = (query) => {
@@ -98,7 +115,7 @@ const WithdrawRequests = () => {
     const sortedData = [...filteredData].sort((a, b) => {
       const dateA = new Date(a.createdAt);
       const dateB = new Date(b.createdAt);
-      return sortOrder === "asc" ? dateB- dateA : dateA - dateB;
+      return sortOrder === "asc" ? dateB - dateA : dateA - dateB;
     });
     setFilteredData(sortedData);
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
@@ -131,7 +148,7 @@ const WithdrawRequests = () => {
     const requestData = {
       price: price, // Всегда отправляем цену
       ...(withdrawStatus && { periodbalance: true }) // Если статус "WITHDRAW", добавляем periodbalance: true
-  };
+    };
     try {
       const { data } = await $http.post(
         `/api/deposit/change-status/${withdraw._id}`,
