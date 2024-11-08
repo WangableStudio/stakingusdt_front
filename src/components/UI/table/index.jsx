@@ -30,6 +30,7 @@ const UniversalTable = ({ data, headers, columnTypes, onButtonClick, isClickable
             </thead>
             <tbody>
                 {data.map((row, rowIndex) => {
+                    console.log(row);
                     return (
                         <tr key={rowIndex}>
                             {headers.map((_, colIndex) => {
@@ -77,36 +78,58 @@ const UniversalTable = ({ data, headers, columnTypes, onButtonClick, isClickable
                                         return (
                                             <td key={colIndex}>
                                                 {row.canWithdraw ? (
-                                                    <Button
-                                                        size="small"
-                                                        variant="contained"
-                                                        className={`withdraw-request__button ${status}`}
-                                                        onClick={() => handleWithdraw(row.price, row.income[0], row.percent[0])}
-                                                        sx={{
-                                                            bgcolor: "#2c84ec",
-                                                            borderRadius: "2px",
-                                                            fontFamily: "Stolzl",
-                                                            fontSize: "10px",
-                                                            fontWeight: 400
-                                                        }}
-                                                    >Вывести заработок</Button>
+                                                    row.status === 'Зачислено' ? (
+                                                        <Button
+                                                            size="small"
+                                                            variant="contained"
+                                                            className={`withdraw-request__button`}
+                                                            disabled
+                                                            sx={{
+                                                                bgcolor: "#2c84ec",
+                                                                borderRadius: "2px",
+                                                                fontFamily: "Stolzl",
+                                                                fontSize: "9px",
+                                                                fontWeight: 400,
+                                                            }}
+                                                        >
+                                                        Транзакция закрыта
+                                                        </Button>
                                                     ) : (
                                                         <Button
                                                             size="small"
                                                             variant="contained"
                                                             className={`withdraw-request__button ${status}`}
-
-                                                            disabled
+                                                            onClick={() => handleWithdraw(row.price, row.income[0], row.percent[0])}
                                                             sx={{
-                                                                bgcolor: "#D3D3D3",
+                                                                bgcolor: "#2c84ec",
                                                                 borderRadius: "2px",
                                                                 fontFamily: "Stolzl",
                                                                 fontSize: "10px",
                                                                 fontWeight: 400
                                                             }}
-                                                        >Вывести заработок</Button>    
+                                                        >
+                                                            Вывести заработок
+                                                        </Button>
+                                                    )
+                                                ) : (
+                                                    <Button
+                                                        size="small"
+                                                        variant="contained"
+                                                        className={`withdraw-request__button ${status}`}
+                                                        disabled
+                                                        sx={{
+                                                            bgcolor: "#D3D3D3",
+                                                            borderRadius: "2px",
+                                                            fontFamily: "Stolzl",
+                                                            fontSize: "10px",
+                                                            fontWeight: 400
+                                                        }}
+                                                    >
+                                                        Вывести заработок
+                                                    </Button>
                                                 )}
                                             </td>
+
                                         );
                                     default:
                                         return (
@@ -126,7 +149,7 @@ const UniversalTable = ({ data, headers, columnTypes, onButtonClick, isClickable
                     );
                 })}
             </tbody>
-        </table>
+        </table >
     );
 };
 
