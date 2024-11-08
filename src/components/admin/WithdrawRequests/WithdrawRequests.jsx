@@ -59,6 +59,7 @@ const WithdrawRequests = () => {
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
+  const [selectedItemUser, setSelectedItemUser] = useState({});
   const [price, setPrice] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOrder, setSortOrder] = useState("asc"); // начальный порядок сортировки
@@ -72,7 +73,6 @@ const WithdrawRequests = () => {
       // Если запрос успешен, обновляем состояния
       setData(depositData);
       setFilteredData(depositData);
-      console.log("Data fetched successfully:", depositData); // Логируем успешный ответ
     } catch (error) {
       // Обработка ошибки
       if (error.response) {
@@ -127,10 +127,11 @@ const WithdrawRequests = () => {
       return toast.error("Не существующий данный");
     }
     setPrice(item.price);
+    console.log(item);
     setSelectedItem(item);
+    setSelectedItemUser(item.user);
     setModalOpen(true);
   };
-
   const handleModalClose = () => {
     setPrice("");
     setSelectedItem({});
@@ -270,20 +271,92 @@ const WithdrawRequests = () => {
               width: "100%",
             }}
           />
-          <Button
-            onClick={handleChangeStatus}
-            variant="contained"
+          <InputLabel
             sx={{
-              mt: 3,
+              mt: 2,
               fontFamily: "Stolzl",
-              p: "4px",
+              fontSize: "13px",
+              mb: 1,
             }}
           >
-            Изменить статус
-          </Button>
-        </Box>
-      </Modal>
+            Кошелек
+          </InputLabel>
+          <Input
+            type="text"
+            readOnly
+            value={selectedItem.address}
+            style={{
+              width: "100%",
+            }}
+          />
+          <InputLabel
+            sx={{
+              mt: 2,
+              fontFamily: "Stolzl",
+              fontSize: "13px",
+              mb: 1,
+            }}
+          >
+            Email
+          </InputLabel>
+          <Input
+            type="email"
+            readOnly
+            value={selectedItemUser.email}
+            style={{
+              width: "100%",
+            }}
+          />
+          <InputLabel
+            sx={{
+              mt: 2,
+              fontFamily: "Stolzl",
+              fontSize: "13px",
+              mb: 1,
+            }}
+          >
+            Номер
+          </InputLabel>
+          <Input
+            type="number"
+            readOnly
+            value={selectedItemUser.tel}
+            style={{
+              width: "100%",
+            }}
+          />
+          <InputLabel
+            sx={{
+              mt: 2,
+              fontFamily: "Stolzl",
+              fontSize: "13px",
+              mb: 1,
+            }}
+          >
+            Кодово слово
+          </InputLabel>
+          <Input
+            type="number"
+            readOnly
+            value={selectedItemUser.secretWord}
+            style={{
+              width: "100%",
+            }}
+          />
+        <Button
+          onClick={handleChangeStatus}
+          variant="contained"
+          sx={{
+            mt: 3,
+            fontFamily: "Stolzl",
+            p: "4px",
+          }}
+        >
+          Изменить статус
+        </Button>
     </Box>
+      </Modal >
+    </Box >
   );
 };
 

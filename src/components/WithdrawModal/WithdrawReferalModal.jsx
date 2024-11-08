@@ -4,6 +4,7 @@ import Input from '../input/Input';
 import CustomSelect from '../CustomSelect/CustomSelect';
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-hot-toast';
 
 const style = {
     position: 'absolute',
@@ -19,6 +20,27 @@ const style = {
 
 const WithdrawReferalModal = ({ onClose, open, changeStep, handleChange, formData, ratesData }) => {
     const user = useSelector((state) => state.user?.currentUser?.user);
+    const handleNextStep = () => {
+        console.log(formData);
+        if(formData.operation == 'WITHDRAW'){
+            if (!formData.address) {
+                toast.error("Пожалуйста, заполните поля для кошелька");
+                return;
+            }
+        }else{
+            if (!formData.address || !formData.depositTerm) {
+                toast.error("Пожалуйста, заполните поля для пополения и срок вклада.");
+                return;
+            }
+        }
+        // Проверка обязательных полей перед переходом на следующий шаг
+        if (formData.price < 20) {
+            toast.error("Минимальная сумма пополнения 20 usdt.");
+            return;
+        }
+        // Если все обязательные поля заполнены, выполняем переход на следующий шаг
+        changeStep();
+    };
     return (
         <Modal
             open={open}
@@ -163,7 +185,7 @@ const WithdrawReferalModal = ({ onClose, open, changeStep, handleChange, formDat
 
                 <Button
                     variant='contained'
-                    onClick={changeStep}
+                    onClick={handleNextStep}
                     sx={{
                         borderRadius: "30px",
                         fontFamily: 'Stolzl',

@@ -4,6 +4,7 @@ import Input from '../input/Input';
 import CustomSelect from '../CustomSelect/CustomSelect';
 import { useEffect, useState } from 'react';
 import $host from '../../http';
+import { toast } from 'react-hot-toast';
 
 const style = {
     position: 'absolute',
@@ -22,11 +23,11 @@ const TopUpModal = ({ onClose, open, changeStep, handleChange, formData, ratesDa
     const handleNextStep = () => {
         // Проверка обязательных полей перед переходом на следующий шаг
         if (!formData.address || !formData.depositTerm) {
-            alert("Пожалуйста, заполните поля для пополения и срок вклада.");
+            toast.error("Пожалуйста, заполните поля для пополения и срок вклада.");
             return;
         }
         if (formData.price < 100) {
-            alert("Минимальная сумма пополнения 100 usdt.");
+            toast.error("Минимальная сумма пополнения 100 usdt.");
             return;
         }
         // Если все обязательные поля заполнены, выполняем переход на следующий шаг
