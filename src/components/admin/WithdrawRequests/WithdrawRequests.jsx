@@ -318,7 +318,7 @@ const WithdrawRequests = () => {
             Номер
           </InputLabel>
           <Input
-            type="number"
+            type="text"
             readOnly
             value={selectedItemUser.tel}
             style={{
@@ -336,7 +336,7 @@ const WithdrawRequests = () => {
             Кодово слово
           </InputLabel>
           <Input
-            type="number"
+            type="text"
             readOnly
             value={selectedItemUser.secretWord}
             style={{
