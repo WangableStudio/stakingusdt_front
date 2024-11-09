@@ -406,7 +406,11 @@ const PartnerStatus = () => {
                             </div>
 
                             <div className="button_block">
-                                <div style={{ opacity: '0.5', cursor: 'pointer' }} onClick={() => setStepOfWithdrawReferal(1)} className="output_button">
+                                {/* <div style={{ cursor: 'pointer' }} onClick={() => setStepOfWithdrawReferal(1)} className="output_button">
+                                    <img src={out_logo} alt="text" />
+                                    Вывести бонусы
+                                </div> */}
+                                <div style={{ opacity: '0.5', cursor: 'pointer' }} className="output_button">
                                     <img src={out_logo} alt="text" />
                                     Вывести бонусы
                                 </div>
