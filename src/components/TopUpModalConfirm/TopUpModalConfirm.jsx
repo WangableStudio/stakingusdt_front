@@ -53,7 +53,7 @@ const TopUpModalConfirm = ({ onClose, open, changeStep, handleChange, formData }
                     }}
                 >
                     {/* Переведите {formData.price} {formData.currency} по QR-коду (Тинькоф). В личном кабинете переведенные средства будут конвертированы в USDT автоматически. */}
-                    Переведите USDT TRC 20 на этот кошелек, после этого нажмите далее, скриншот подтвержденного перевода пришлите в службу поддержки <a href="https://t.me/ncpsupport">Загрузить изображение</a> <br />
+                    Переведите USDT TRC 20 на этот кошелек, после этого нажмите далее, скриншот подтвержденного перевода пришлите в службу поддержки <br />
                     <Input
                         type="file"
                         setValue={(files) => handleChange({
