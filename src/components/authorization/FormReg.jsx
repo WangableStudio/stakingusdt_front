@@ -7,6 +7,7 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { givecode, registration } from '../action/user';
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
+import InputMask from 'react-input-mask';
 import { BsEyeSlash, BsEye } from "react-icons/bs";
 
 function useQuery() {
@@ -58,16 +59,16 @@ const FormReg = () => {
             setLoading(false);
         }
     }
-    
+
     const giveCode = async (e) => {
         e.preventDefault();
         setLoading(true)
-        try{
+        try {
             const data = await givecode(email)
             setCode(false)
-        }catch(e){
+        } catch (e) {
             toast.error(e.message);
-        } finally{
+        } finally {
             setLoading(false)
         }
     }
@@ -109,8 +110,14 @@ const FormReg = () => {
 
                                 <ul>
                                     <li>Телефон</li>
-                                    <Input value={tel} setValue={setTel} type='tel' />
-
+                                    <InputMask
+                                        className='input_'
+                                        mask="+7 (999) 999-99-99"
+                                        value={tel}
+                                        onChange={(e) => setTel(e.target.value)}
+                                        type='tel'
+                                        required
+                                    />
                                 </ul>
 
                                 <ul>
@@ -141,7 +148,7 @@ const FormReg = () => {
                                     <li>Код для потверждения</li>
                                     <Input value={codeInp} setValue={setCodeInp} type='text' required />
                                 </ul>
-                                
+
                                 {/*<ul>*/}
                                 {/*    <li>Рефераль<br/>ный код</li>*/}
                                 {/*    <Input value={referalCode} setValue={setRef_code} type='referalCode'/>*/}

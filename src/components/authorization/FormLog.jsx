@@ -10,6 +10,7 @@ import { setUser } from "../../reducers/userReducer";
 import { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
+import InputMask from 'react-input-mask';
 
 const FormLog = () => {
     const navigate = useNavigate();
@@ -83,7 +84,14 @@ const FormLog = () => {
                             <div className="title_input">
                                 <ul>
                                     <li>Телефон</li>
-                                    <Input value={tel} setValue={setTel} type="tel" />
+                                    <InputMask
+                                        className='input_'
+                                        mask="+7 (999) 999-99-99"
+                                        value={tel}
+                                        onChange={(e) => setTel(e.target.value)}
+                                        type='tel'
+                                        required
+                                    />
                                 </ul>
 
                                 <ul>
